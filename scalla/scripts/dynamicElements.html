@@ -1,0 +1,52 @@
+<!-- BODY -->
+<script id="scriptDeAdicionarElementos">
+  document.addEventListener("DOMContentLoaded", () => {
+    const wrapper = document.querySelector(
+      "#page-wrapper.moodle-login-index-php",
+    );
+
+    if (wrapper) {
+      wrapper.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div id="containerDaImagemFundoTelaLogin">
+          <figure id="imagemFundoTelaLogin"></figure>
+        </div>
+      `,
+      );
+
+      wrapper.insertAdjacentHTML(
+        "beforeend",
+        `
+        <span id="faixaAzulEscuraTelaLogin"></span>
+      `,
+      );
+
+      wrapper.insertAdjacentHTML(
+        "beforeend",
+        `
+        <span id="faixaAzulClaraTelaLogin"></span>
+      `,
+      );
+
+      wrapper.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div id="mensagemBoasVindasTelaLogin">
+          <span id="mortarboard">
+            <span></span>
+          </span>
+          <p class="title">
+            Bem vindo(a) ao
+            <span>Scalla</span>
+          </p>
+          <p class="subtitle">
+            Pronto para alcançar sua aprovação?
+          </p>
+          <img src="" />
+        </div>
+      `,
+      );
+    }
+  });
+</script>

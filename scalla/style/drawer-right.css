@@ -1,0 +1,37 @@
+/* MENU DA DIREITA */
+.drawer.drawer-right {
+  width: var(--drawerRightWidth);
+  background-color: #fff;
+  z-index: 1041 !important;
+
+  border-left: 2px solid #000;
+
+  visibility: unset;
+  transition: right 0.4s;
+
+  /* BOTÃO DE FECHAR */
+  .drawertoggle[data-action="closedrawer"] {
+    i {
+      color: #000;
+    }
+  }
+
+  img.img-responsive.moodle- {
+    border-radius: 0;
+    height: auto;
+  }
+}
+
+/* SÓ DIMINUI O CONTEÚDO QUANDO PARAR DE MOSTRAR O FUNDO PRETO */
+@media only screen and (min-width: 992px) {
+  #page {
+    &.drawers.show-drawer-right {
+      margin-left: var(--drawerLeftWidth);
+      margin-right: var(--drawerRightWidth);
+    }
+  }
+  .drawer.drawer-right {
+    top: unset;
+    height: 100dvh;
+  }
+}

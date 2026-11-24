@@ -1,0 +1,30 @@
+#page.drawers.show-drawer-left {
+  margin-left: var(--drawerLeftWidth);
+}
+
+.drawer.drawer-left {
+  width: var(--drawerLeftWidth);
+  background-color: #fff;
+
+  /* BOTÃO DE FECHAR */
+  .drawertoggle[data-action="closedrawer"] {
+    i {
+      color: #000;
+    }
+  }
+
+  /* CONTAINER DOS LINKS */
+  .list-group {
+    gap: 10px;
+
+    /* LINK */
+    a {
+      width: auto;
+      margin: 5px 10px;
+    }
+  }
+
+  a.courseindex-link {
+    color: #fff;
+  }
+}

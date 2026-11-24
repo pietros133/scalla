@@ -1,0 +1,137 @@
+#navbarTop {
+  --navBarBorderColor: rgb(185, 185, 185);
+  height: var(--navBarHeight);
+  background-color: #fff;
+
+  border-bottom: 2px solid var(--navBarBorderColor);
+
+  display: flex;
+  justify-content: space-between;
+
+  & > button.navbar-toggler {
+    margin-right: auto;
+  }
+}
+
+#desktopDrawerLeft {
+  display: flex;
+  flex-direction: row;
+
+  ul.nav.more-nav.navbar-nav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #navbarTop {
+    #logoDoSite {
+      aspect-ratio: 457 / 252;
+      background: url([[pix:theme|logo_scalla]]) no-repeat 0 0 / 100% 100%;
+
+      width: 132px;
+      font-size: 0;
+    }
+
+    #desktopDrawerLeft {
+      flex-direction: column;
+
+      width: var(--desktopDrawerWidth);
+      height: calc(100dvh - var(--navBarHeight));
+      background-color: rgb(222 222 222);
+
+      border-right: 2px solid var(--navBarBorderColor);
+
+      position: absolute;
+      left: 0;
+      top: var(--navBarHeight);
+
+      .primary-navigation {
+        display: none;
+      }
+    }
+
+    #desktopDrawerLeft #usernavigation {
+      flex-direction: row-reverse;
+      justify-content: center;
+      margin-left: unset !important;
+      align-items: flex-start;
+
+      margin-top: 10px;
+
+      .usermenu-container {
+        .userinitials {
+          width: 60px;
+          height: 60px;
+        }
+
+        #user-action-menu {
+          --userActionMenuHeight: 330px;
+          height: var(--userActionMenuHeight);
+
+          transition: scale 0.4s;
+          transform-origin: top left;
+          scale: 0;
+
+          display: block;
+          inset: unset;
+          left: var(--desktopDrawerWidth);
+          top: 0;
+
+          &.show {
+            scale: 1;
+          }
+        }
+      }
+
+      .divider {
+        display: none;
+      }
+    }
+
+    .popover-region {
+      position: unset;
+
+      .popover-region-container {
+        top: 0;
+        left: var(--desktopDrawerWidth);
+      }
+    }
+  }
+
+  #navbarTop:not(:has(.langmenu)) {
+    #desktopDrawerLeft {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+
+      ul.nav.more-nav.navbar-nav {
+        display: grid;
+        justify-content: center;
+        gap: 10px;
+        height: 240px;
+        margin-block: var(--navBarGap);
+
+        li a {
+          color: rgb(46, 101, 219);
+
+          &:hover,
+          &:focus {
+            background-color: rgb(46, 101, 219) !important;
+            color: #fff;
+          }
+
+          &.active {
+            background-color: rgb(46, 101, 219);
+            color: #fff;
+
+            &:hover,
+            &:focus {
+              color: #fff;
+              background-color: rgb(16, 58, 148) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

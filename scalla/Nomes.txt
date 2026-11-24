@@ -1,0 +1,2 @@
+Nome do tema: Tema Scalla
+Nome técnico: theme_scalla

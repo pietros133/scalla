@@ -1,0 +1,83 @@
+<!-- HEADER -->
+<script id="scripDeAdicionarClasses">
+  document.addEventListener("DOMContentLoaded", function () {
+    var elementsWithIDs = ["topofscroll", "page", "page-wrapper", "navbarTop"];
+
+    var genericElements = ["body"];
+
+    var elementsWithClasses = [];
+
+    /**
+     * QUANDO A CLASSE VAI SER ATRIBUÍDA À APENAS UM ELEMENTO CORRESPONDENTE
+     */
+    var mixedElement = [];
+
+    /**
+     * QUANDO A CLASSE VAI SER ATRIBUÍDA À VÁRIOS ELEMENTOS
+     */
+    var multipleMixedElements = ["img.img-responsive"];
+
+    function addDynamicClass(element, type) {
+      let el;
+
+      switch (type) {
+        case "id":
+          el = document.getElementById(element);
+          break;
+        case "generic":
+          el = document.getElementsByTagName(element);
+          break;
+        case "class":
+          el = document.getElementsByClassName(element);
+          break;
+        case "mixed":
+          el = document.querySelector(element);
+          break;
+        case "multiple-mixed":
+          el = document.querySelectorAll(element);
+          break;
+        default:
+          return;
+      }
+
+      if (!el) return;
+
+      if (el instanceof NodeList || el instanceof HTMLCollection) {
+        el.forEach((element) => {
+          if (!element) return;
+
+          addClassNameToElement(element);
+        });
+      } else addClassNameToElement(el);
+    }
+
+    function addClassNameToElement(element) {
+      let className = window.location.pathname
+        .replace(/^\//, "")
+        .replace(/\//g, "-")
+        .replace(/\./g, "-")
+        .replace(/[^a-zA-Z0-9-]/g, "")
+        .toLowerCase();
+
+      if (className) element.classList.add(className);
+    }
+
+    elementsWithIDs.forEach((elID) => {
+      addDynamicClass(elID, "id");
+    });
+    genericElements.forEach((elGen) => {
+      addDynamicClass(elGen, "generic");
+    });
+
+    elementsWithClasses.forEach((elClass) => {
+      addDynamicClass(elClass, "class");
+    });
+    mixedElement.forEach((elMix) => {
+      addDynamicClass(elMix, "mixed");
+    });
+
+    multipleMixedElements.forEach((elMixs) => {
+      addDynamicClass(elMixs, "multiple-mixed");
+    });
+  });
+</script>

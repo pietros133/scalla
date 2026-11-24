@@ -1,0 +1,47 @@
+#page {
+  padding-inline: 3rem !important;
+  margin-top: var(--navBarHeight) !important;
+
+  &.moodle-my- {
+    /* CALENDÁRIO NA TELA DE PAINEL */
+    .maincalendar {
+      max-width: 830px;
+      margin: auto;
+      border: 1px solid black;
+    }
+  }
+
+  &::before {
+    display: block;
+    content: "";
+    background-color: var(--primaryColor);
+    width: 400px;
+    height: 150dvh;
+    rotate: 0 0 1 30deg;
+    z-index: -10;
+    position: fixed;
+    right: 35%;
+    top: -190px;
+  }
+
+  /* ELEMENTO DO MEIO, QUE CONTÉM O CONTEÚDO PRINCIPAL */
+  #topofscroll {
+    max-width: unset !important;
+  }
+
+  #page-content {
+    margin: 0;
+  }
+
+  @media only screen and (min-width: 768px) {
+    #topofscroll {
+      &.moodle-admin-search-php {
+        min-width: 658px;
+      }
+      /* PAINEL */
+      &.moodle-my- {
+        min-width: 692px;
+      }
+    }
+  }
+}

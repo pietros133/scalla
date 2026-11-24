@@ -1,0 +1,23 @@
+body:not(.moodle-admin-index-php) {
+  overflow: hidden;
+
+  #page {
+    overflow: auto;
+    @media only screen and (min-width: 768px) {
+      #topofscroll.moodle-admin-plugins-php {
+        min-width: 1000px;
+      }
+      /* SE NÃO ESTIVER NESSAS PÁGINAS, VAI APLICAR A MARGEM */
+      &:not(.moodle-admin-plugins-php):not(.moodle-admin-index-php):not(
+          .moodle-login-index-php
+        ) {
+        margin-left: var(--desktopDrawerWidth);
+      }
+
+      /* VALIDAÇÃO BÁSICA PRA APLICAR A MARGEM CASO ESTEJA DENTRO DA APLICAÇÃO NORMAL */
+      &:has(form.simplesearchform) {
+        margin-left: var(--desktopDrawerWidth);
+      }
+    }
+  }
+}

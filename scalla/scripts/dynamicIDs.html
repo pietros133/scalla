@@ -1,0 +1,102 @@
+<!-- FOOTER -->
+<script id="scriptDeTransformacoes">
+  function transformElements(operations) {
+    function html(strings, ...values) {
+      return strings.reduce(
+        (result, str, i) => result + str + (values[i] ?? ""),
+        "",
+      );
+    }
+
+    function buildElement({ newElement, id, classNames }) {
+      const classAttr = classNames?.length
+        ? ` class="${classNames.join(" ")}"`
+        : "";
+      const idAttr = id ? ` id="${id}"` : "";
+      const markup = html`<${newElement}${idAttr}${classAttr}></${newElement}>`;
+      const template = document.createElement("template");
+      template.innerHTML = markup.trim();
+      return template.content.firstElementChild;
+    }
+
+    for (const op of operations) {
+      const targets = document.querySelectorAll(op.query);
+
+      for (const target of targets) {
+        if (op.wrapInto) {
+          const wrapper = document.querySelector(op.wrapInto.destination);
+          if (!wrapper) {
+            const newWrapper = buildElement({
+              newElement: op.wrapInto.newElement ?? "div",
+              id: op.wrapInto.id,
+              classNames: op.wrapInto.classNames,
+            });
+            target.parentElement.insertBefore(newWrapper, target);
+            newWrapper.appendChild(target);
+          } else {
+            wrapper.appendChild(target);
+          }
+        } else if (op.moveInto) {
+          const destination = document.querySelector(op.moveInto);
+          if (destination) destination.appendChild(target);
+        } else if (op.newElement) {
+          const newEl = buildElement(op);
+          if (op.keepOriginalClasses)
+            target.classList.forEach((cls) => newEl.classList.add(cls));
+          if (op.revertStyles) newEl.style.all = "revert";
+          target.replaceWith(newEl);
+        } else {
+          if (op.id) target.id = op.id;
+          if (op.removeClasses)
+            op.removeClasses.forEach((cls) => target.classList.remove(cls));
+          if (op.addClasses)
+            op.addClasses.forEach((cls) => target.classList.add(cls));
+        }
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () =>
+    transformElements([
+      {
+        query: ".navbar.fixed-top",
+        id: "navbarTop",
+        removeClasses: ["bg-white"],
+      },
+      {
+        query: "a.navbar-brand",
+        id: "logoDoSite",
+      },
+      {
+        query: "div.thegrid.d-flex.flex-wrap.mt-2",
+        id: "topicsContainer",
+      },
+      {
+        query: "h1.login-heading",
+        newElement: "span",
+        id: "loginFormLogo",
+      },
+      {
+        query: "form.editmode-switch-form",
+        moveInto: "#navbarTop",
+      },
+      {
+        query: "#navbarTop .primary-navigation",
+        wrapInto: {
+          newElement: "div",
+          id: "desktopDrawerLeft",
+          destination: "#desktopDrawerLeft",
+        },
+      },
+      {
+        query: "#navbarTop ul.navbar-nav",
+        wrapInto: { destination: "#desktopDrawerLeft" },
+      },
+      {
+        query: "#usernavigation",
+        wrapInto: { destination: "#desktopDrawerLeft" },
+        removeClasses: ["ml-auto"],
+      },
+    ]),
+  );
+</script>

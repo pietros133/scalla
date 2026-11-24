@@ -1,0 +1,15 @@
+:root {
+  --drawerLeftWidth: 215px;
+  --drawerRightWidth: 265px;
+
+  --primaryColor: rgba(2, 24, 72, 0.93);
+  --secondaryColor: rgba(20, 47, 105, 0.97);
+
+  --navBarHeight: 61px;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --desktopDrawerWidth: 215px;
+  }
+}

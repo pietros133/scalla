@@ -1,0 +1,69 @@
+/* TELA ANTES DO LOGIN */
+#navbarTop:has(.langmenu) {
+  /* MENU DA ESQUERDA */
+  #desktopDrawerLeft {
+    display: none;
+
+    #usernavigation {
+      flex-direction: column !important;
+
+      .usermenu-container {
+        margin: auto;
+
+        /* LINK PRA TELA DE LOGIN */
+        .usermenu .login {
+          padding-left: 0 !important;
+
+          a {
+            color: #000 !important;
+            &:focus {
+              background-color: transparent;
+              box-shadow: unset;
+            }
+          }
+        }
+      }
+    }
+
+    /* MENU DE LINGUAGENS */
+    .langmenu {
+      display: none;
+    }
+    /* LINK PARA PÁGINA INICIAL */
+    ul.nav.more-nav.navbar-nav {
+      display: none;
+      justify-content: center;
+
+      a {
+        margin-top: 10px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  /* DESKTOP */
+  @media only screen and (min-width: 768px) {
+    #desktopDrawerLeft {
+      display: block;
+
+      ul.nav.more-nav.navbar-nav {
+        display: flex;
+      }
+      /* BOTÃO DO MENU DE LINGUAGEM */
+      #lang-menu-toggle {
+        white-space: unset;
+        margin-top: 10px;
+      }
+      /* MENU DE SELEÇÃO DE LINGUAGEM */
+      #lang-action-menu {
+        transform-origin: top left;
+        right: unset;
+      }
+      /* LINK DE ACESSO */
+      #usernavigation a {
+        padding: 5px;
+      }
+    }
+  }
+}

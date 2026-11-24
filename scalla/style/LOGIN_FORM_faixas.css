@@ -1,0 +1,51 @@
+#page-wrapper.moodle-login-index-php {
+  #faixaAzulClaraTelaLogin,
+  #containerDaImagemFundoTelaLogin {
+    display: none;
+  }
+
+  /* FAIXA AZUL ESCURA */
+  #faixaAzulEscuraTelaLogin {
+    background-color: var(--primaryColor);
+
+    clip-path: polygon(90% 0, 100% 0, 100% 100%, 10% 100%);
+    position: absolute;
+    inset: 0;
+  }
+
+  @media only screen and (min-width: 879px) {
+    /* FAIXA AZUL ESCURA */
+    #faixaAzulEscuraTelaLogin {
+      height: 120dvh;
+
+      rotate: 0 0 1 5deg;
+
+      clip-path: unset;
+
+      position: absolute;
+      top: -100px;
+      right: 44%;
+      left: -50px;
+    }
+
+    /* FAIXA AZUL CLARA */
+    #faixaAzulClaraTelaLogin {
+      display: block;
+      width: 370px;
+      height: 160dvh;
+      z-index: 10;
+
+      background-image: linear-gradient(
+        90deg,
+        var(--secondaryColor),
+        rgba(from var(--secondaryColor) r g b / calc(alpha - 0.5))
+      );
+
+      rotate: 0 0 1 5deg;
+
+      position: absolute;
+      top: -150px;
+      left: 55%;
+    }
+  }
+}
